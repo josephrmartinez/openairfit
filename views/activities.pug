@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+
+  p There are no activities in #{title} yet. Add some!
+
+//-   ul
+//-     each activity in activity_list
+//-       li
+//-         a(href=activity.url) #{activity.title}
+//-         |  (#{activity.organizer.name})
+
+//-     else
+//-       li There are no activities in #{title} yet. Add some!
