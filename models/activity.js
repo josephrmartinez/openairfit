@@ -8,13 +8,19 @@ const ActivitySchema = new Schema({
   summary: { type: String, required: true },
   category: [{ type: Schema.Types.ObjectId, ref: "Category" }],
     participants: [{ type: Schema.Types.ObjectId, ref: "Participant", required: true }],
-  city: { type: String, required: true },
+  city: { type: Schema.Types.ObjectId, ref: "City" },
   season: {
     type: String,
     enum: ["Seasonal", "Year-round", ""],
     default: "",
   },
   
+});
+
+// Virtual for activity URL
+ActivitySchema.virtual("url").get(function () {
+  // We don't use an arrow function as we'll need the this object
+  return `/:city/activity/${this._id}`;
 });
 
 // Export model

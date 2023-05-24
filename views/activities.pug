@@ -3,7 +3,9 @@ extends layout
 block content
   h1= title
 
-  p There are no activities in #{title} yet. Add some!
+  p There are no activities in #{title} yet. 
+  p #{title}
+  a(href=url.params+'/activities/create') Add an activity
 
 //-   ul
 //-     each activity in activity_list
