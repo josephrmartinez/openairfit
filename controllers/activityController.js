@@ -1,35 +1,42 @@
 const Activity = require("../models/activity");
-const Participant = require("../models/participant");
-const Category = require("../models/category");
-const City = require("../models/city");
-const Organizer = require("../models/organizer")
-
-const { body, validationResult } = require("express-validator");
 const asyncHandler = require("express-async-handler");
 
+// Display list of all activities.
+exports.activity_list = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity list");
+});
 
-exports.index = asyncHandler(async (req, res, next) => {
-  // Get details of books, book instances, authors and genre counts (in parallel)
-  const [
-    numCities,
-    numActivities,
-    numOrganizers,
-    numParticipants,
-    numCategories,
-  ] = await Promise.all([
-    City.countDocuments({}).exec(),
-    Activity.countDocuments({}).exec(),
-    Participant.countDocuments({}).exec(),
-    Category.countDocuments({}).exec(),
-    Organizer.countDocuments({}).exec(),
-  ]);
+// Display detail page for a specific activity.
+exports.activity_detail = asyncHandler(async (req, res, next) => {
+  res.send(`NOT IMPLEMENTED: activity detail: ${req.params.id}`);
+});
 
-  res.render("index", {
-    title: "OpenAirFit",
-    city_count: numCities,
-    activity_count: numActivities,
-    organizer_count: numOrganizers,
-    participant_count: numParticipants,
-    category_count: numCategories,
-  });
+// Display activity create form on GET.
+exports.activity_create_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity create GET");
+});
+
+// Handle activity create on POST.
+exports.activity_create_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity create POST");
+});
+
+// Display city delete form on GET.
+exports.activity_delete_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity delete GET");
+});
+
+// Handle activity delete on POST.
+exports.activity_delete_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity delete POST");
+});
+
+// Display activity update form on GET.
+exports.activity_update_get = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity update GET");
+});
+
+// Handle activity update on POST.
+exports.activity_update_post = asyncHandler(async (req, res, next) => {
+  res.send("NOT IMPLEMENTED: activity update POST");
 });
