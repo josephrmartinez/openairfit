@@ -3,7 +3,11 @@ const asyncHandler = require("express-async-handler");
 
 // Display list of all activities.
 exports.activity_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: activity list");
+  const allActivities = await Activity.find({}, "title organizer summary category participants season city")
+    .sort({ city: 1 })
+    .populate("organizer category participants city")
+    .exec()
+  res.render("activity_list", {title: "All Activities", activity_list: allActivities})
 });
 
 // Display detail page for a specific activity.

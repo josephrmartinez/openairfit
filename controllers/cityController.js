@@ -3,7 +3,10 @@ const asyncHandler = require("express-async-handler");
 
 // Display list of all cities.
 exports.city_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: city list");
+  const allCities = await City.find({}, "name")
+    .sort({ name: 1 })
+    .exec();
+  res.render("city_list", {title: "City List", city_list: allCities})
 });
 
 // Display detail page for a specific city.

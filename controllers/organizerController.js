@@ -3,7 +3,10 @@ const asyncHandler = require("express-async-handler");
 
 // Display list of all organizers.
 exports.organizer_list = asyncHandler(async (req, res, next) => {
-  res.send("NOT IMPLEMENTED: organizer list");
+  const allOrganizers = await Organizer.find({}, "first_name last_name")
+    .sort({ last_name: 1 })
+    .exec();
+  res.render("organizers_list", {title: "Organizers", organizer_list: allOrganizers})
 });
 
 // Display detail page for a specific organizer.
