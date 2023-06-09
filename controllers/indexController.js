@@ -23,6 +23,9 @@ exports.index = asyncHandler(async (req, res, next) => {
     Category.countDocuments({}).exec(),
     Organizer.countDocuments({}).exec(),
   ]);
+  const allCities = await City.find({}, "name")
+    .sort({ name: 1 })
+    .exec();
 
   res.render("index", {
     title: "OpenAirFit",
@@ -31,5 +34,6 @@ exports.index = asyncHandler(async (req, res, next) => {
     organizer_count: numOrganizers,
     participant_count: numParticipants,
     category_count: numCategories,
+    city_list: allCities
   });
 });

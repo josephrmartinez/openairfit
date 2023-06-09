@@ -14,3 +14,9 @@ block content
     li #[strong Organizers:] !{organizer_count}
     li #[strong Participants:] !{participant_count}
     li #[strong Activity types:] !{category_count}
+
+
+  ul
+    each city in city_list
+      li 
+        a(href=city.url) #{city.name}

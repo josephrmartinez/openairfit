@@ -7,5 +7,11 @@ const CitySchema = new Schema({
 });
 
 
+// Virtual for city URL
+CitySchema.virtual("url").get(function () {
+  // We don't use an arrow function as we'll need the this object
+  return `/city/${this._id}`;
+});
+
 // Export model
 module.exports = mongoose.model("City", CitySchema);
