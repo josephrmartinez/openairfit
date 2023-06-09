@@ -1,0 +1,23 @@
+extends layout
+
+block content
+
+  h1 #{city.name}
+
+  div(style='margin-left:20px;margin-top:20px')
+
+    h4 Activities
+
+    dl
+      each activity in all_activities
+        dt
+          a(href=activity.url) #{activity.title}
+        dd #{activity.summary}
+
+      else
+        p This city has no activities.
+
+  hr
+  p
+    a(href=city.url+'/delete') Delete city
+

@@ -1,4 +1,5 @@
 const City = require("../models/city");
+const Activity = require("../models/activity")
 const asyncHandler = require("express-async-handler");
 
 // Display list of all cities.
@@ -11,7 +12,24 @@ exports.city_list = asyncHandler(async (req, res, next) => {
 
 // Display detail page for a specific city.
 exports.city_detail = asyncHandler(async (req, res, next) => {
-  res.send(`NOT IMPLEMENTED: city detail: ${req.params.id}`);
+  // Get details of city and all activities (in parallel)
+  const [city, allActivities] = await Promise.all([
+    City.findById(req.params.id).exec(),
+    Activity.find({ city: req.params.id }, "title organizer summary category participants city season").exec(),
+  ]);
+
+  if (city === null) {
+    // No results.
+    const err = new Error("City not found");
+    err.status = 404;
+    return next(err);
+  }
+
+  res.render("city_detail", {
+    title: "City Detail",
+    city: city,
+    all_activities: allActivities,
+  });
 });
 
 // Display city create form on GET.

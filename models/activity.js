@@ -20,7 +20,7 @@ const ActivitySchema = new Schema({
 // Virtual for activity URL
 ActivitySchema.virtual("url").get(function () {
   // We don't use an arrow function as we'll need the this object
-  return `/:city/activity/${this._id}`;
+  return `/activity/${this._id}`;
 });
 
 // Export model
